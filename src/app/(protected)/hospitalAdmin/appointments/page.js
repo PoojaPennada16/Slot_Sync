@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import PortalCard from "@/app/components/common/card";
-import Button from "@/app/components/common/button";
+import PortalCard from "@/components/common/card";
+import Button from "@/components/common/button";
 import { Sparkles, Check, X } from "lucide-react";
 
 const tabs = [

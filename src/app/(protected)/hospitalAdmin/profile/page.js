@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Star } from "lucide-react";
-import PortalCard from "@/app/components/common/card";
-import Button from "@/app/components/common/button";
+import PortalCard from "@/components/common/card";
+import Button from "@/components/common/button";
 
 const stats = [
   { label: "Total Appointments", value: "63"      },

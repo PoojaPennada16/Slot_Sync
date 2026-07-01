@@ -21,29 +21,29 @@ const menuSections = [
   {
     label: "Overview",
     items: [
-      { name: "Dashboard", icon: LayoutDashboard, href: "/Reception/dashboard" },
+      { name: "Dashboard", icon: LayoutDashboard, href: "/receptionadmin/dashboard" },
     ],
   },
   {
     label: "Patients",
     items: [
-      { name: "Book Appointment", icon: CalendarPlus, href: "/Reception/bookappointment" },
-      { name: "Walk-in Registration", icon: UserPlus, href: "/Reception/walkin" },
-      { name: "Patient Check-in", icon: LogIn, href: "/Reception/checkin" },
-      { name: "Queue Management", icon: ListOrdered, href: "/Reception/queue" },
+      { name: "Book Appointment", icon: CalendarPlus, href: "/receptionadmin/bookappointment" },
+      { name: "Walk-in Registration", icon: UserPlus, href: "/receptionadmin/walkin" },
+      { name: "Patient Check-in", icon: LogIn, href: "/receptionadmin/checkin" },
+      { name: "Queue Management", icon: ListOrdered, href: "/receptionadmin/queue" },
     ],
   },
   {
     label: "Coordination",
     items: [
-      { name: "Doctor Availability", icon: Stethoscope, href: "/Reception/doctoravailability" },
-      { name: "Follow-up Center", icon: RefreshCcw, href: "/Reception/followups" },
-      { name: "Prescription Handoff", icon: ClipboardList, href: "/Reception/prescriptions" },
-      { name: "Lab & Diagnostics", icon: FlaskConical, href: "/Reception/lab" },
+      { name: "Doctor Availability", icon: Stethoscope, href: "/receptionadmin/doctoravailability" },
+      { name: "Follow-up Center", icon: RefreshCcw, href: "/receptionadmin/followups" },
+      { name: "Prescription Handoff", icon: ClipboardList, href: "/receptionadmin/prescriptions" },
+      { name: "Lab & Diagnostics", icon: FlaskConical, href: "/receptionadmin/lab" },
       {
         name: "Notifications",
         icon: Bell,
-        href: "/Reception/notifications",
+        href: "/receptionadmin/notifications",
         badge: 3,
       },
     ],

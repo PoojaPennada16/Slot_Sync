@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { CalendarRange, FlaskConical, ScanLine, Stethoscope, UserPlus, Send } from "lucide-react";
-import PortalCard from "@/app/components/common/card";
+import PortalCard from "@/components/common/card";
+
 
 const QUICK_TASKS = [
   { label: "Book Follow-up",      icon: <CalendarRange className="h-4 w-4" /> },

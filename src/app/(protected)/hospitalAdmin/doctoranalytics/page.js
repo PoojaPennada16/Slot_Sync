@@ -7,7 +7,8 @@ import {
     Clock,
     Activity,
 } from "lucide-react";
-import PortalCard from "@/app/components/common/card";
+import PortalCard from "@/components/common/card";
+
 
 import {
     ResponsiveContainer,

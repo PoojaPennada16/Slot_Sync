@@ -20,28 +20,28 @@ const menuSections = [
   {
     label: "Overview",
     items: [
-      { name: "Dashboard", icon: LayoutDashboard, href: "/DoctorAdmin/dashboard" },
-      { name: "Today's Appointments", icon: CalendarDays, href: "/DoctorAdmin/appointments" },
+      { name: "Dashboard", icon: LayoutDashboard, href: "/hospitalAdmin/dashboard" },
+      { name: "Today's Appointments", icon: CalendarDays, href: "/hospitalAdmin/appointments" },
     ],
   },
   {
     label: "Clinical",
     items: [
-      { name: "Patient Records", icon: Users, href: "/DoctorAdmin/patients" },
-      { name: "Prescriptions", icon: FileText, href: "/DoctorAdmin/prescriptions" },
-      { name: "Availability", icon: CalendarClock, href: "/DoctorAdmin/availability" },
-      { name: "Follow-ups", icon: RefreshCcw, href: "/DoctorAdmin/followups" },
+      { name: "Patient Records", icon: Users, href: "/hospitalAdmin/patients" },
+      { name: "Prescriptions", icon: FileText, href: "/hospitalAdmin/prescriptions" },
+      { name: "Availability", icon: CalendarClock, href: "/hospitalAdmin/availability" },
+      { name: "Follow-ups", icon: RefreshCcw, href: "/hospitalAdmin/followups" },
     ],
   },
   {
     label: "Workspace",
     items: [
-      { name: "Analytics", icon: BarChart3, href: "/DoctorAdmin/doctoranalytics" },
-      { name: "Reception Coordinator", icon: Headphones, href: "/DoctorAdmin/reception" },
+      { name: "Analytics", icon: BarChart3, href: "/hospitalAdmin/doctoranalytics" },
+      { name: "Reception Coordinator", icon: Headphones, href: "/hospitalAdmin/reception" },
       {
         name: "Notifications",
         icon: Bell,
-        href: "/DoctorAdmin/notifications",
+        href: "/hospitalAdmin/notifications",
         badge: 3,
       },
     ],

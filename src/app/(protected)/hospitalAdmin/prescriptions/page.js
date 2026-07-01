@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import PortalCard from "@/app/components/common/card";
-import Button from "@/app/components/common/button";
+import PortalCard from "@/components/common/card";
+import Button from "@/components/common/button";
 import { Trash2, Printer, Send, Plus } from "lucide-react";
 
 const PATIENTS = [
