@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { X } from "lucide-react";
-import PortalCard from "@/app/components/common/card";
-import Button from "@/app/components/common/button";
+import PortalCard from "@/components/common/card";
+import Button from "@/components/common/button";
 
 const STATUS_OPTIONS = ["Available", "Limited", "Blocked", "Holiday", "Emergency"];
 

@@ -1,5 +1,6 @@
 import React from "react";
-import PortalCard from "@/app/components/common/card";
+import PortalCard from "@/components/common/card";
+
 
 export default function ReceptionCoordinator() {
   const stats = [

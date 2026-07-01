@@ -19,27 +19,27 @@ const menuSections = [
   {
     label: "Overview",
     items: [
-      { name: "Dashboard", icon: LayoutDashboard, href: "/HospitalAdmin/dashboard" },
-      { name: "Analytics", icon: BarChart3, href: "/HospitalAdmin/advanceanalytics" },
+      { name: "Dashboard", icon: LayoutDashboard, href: "/hospitalsuperadmin/dashboard" },
+      { name: "Analytics", icon: BarChart3, href: "/hospitalsuperadmin/advanceanalytics" },
     ],
   },
   {
     label: "People",
     items: [
-      { name: "Doctors", icon: Stethoscope, href: "/HospitalAdmin/doctor" },
-      { name: "Patients", icon: Users, href: "/HospitalAdmin/patient" },
-      { name: "Receptionists", icon: Headphones, href: "/HospitalAdmin/receptionists" },
+      { name: "Doctors", icon: Stethoscope, href: "/hospitalsuperadmin/doctor" },
+      { name: "Patients", icon: Users, href: "/hospitalsuperadmin/patient" },
+      { name: "Receptionists", icon: Headphones, href: "/hospitalsuperadmin/receptionists" },
     ],
   },
   {
     label: "Operations",
     items: [
-      { name: "Appointments", icon: Calendar, href: "/HospitalAdmin/appointments" },
-      { name: "Departments", icon: Building2, href: "/HospitalAdmin/departments" },
+      { name: "Appointments", icon: Calendar, href: "/hospitalsuperadmin/appointments" },
+      { name: "Departments", icon: Building2, href: "/hospitalsuperadmin/departments" },
       {
         name: "Notifications",
         icon: Bell,
-        href: "/HospitalAdmin/notifications",
+        href: "/hospitalsuperadmin/notifications",
         badge: 3,
       },
     ],

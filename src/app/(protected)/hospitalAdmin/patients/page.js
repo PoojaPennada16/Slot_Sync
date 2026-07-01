@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Search, Star, Clock } from "lucide-react";
-import PortalCard from "@/app/components/common/card";
+import PortalCard from "@/components/common/card";
 
 const patients = [
   {
