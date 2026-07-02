@@ -9,50 +9,44 @@ import {
 } from "lucide-react";
 
 export default function DashboardCards() {
-  const cards = [
+  const stats = [
     {
-      id: "appointments",
-      title: "Total Appointments",
+      label: "Total Appointments",
       value: "2,100",
       icon: <Calendar className="w-5 h-5 text-indigo-600" />,
       iconBg: "bg-indigo-50",
       change: "+8%",
     },
     {
-      id: "patients",
-      title: "Today's Patients",
+      label: "Today's Patients",
       value: "10",
       icon: <Users className="w-5 h-5 text-cyan-500" />,
       iconBg: "bg-cyan-50",
       change: "+5%",
     },
     {
-      id: "doctors",
-      title: "Active Doctors",
+      label: "Active Doctors",
       value: "26",
       icon: <Stethoscope className="w-5 h-5 text-green-500" />,
       iconBg: "bg-green-50",
       change: "+2%",
     },
     {
-      id: "revenue",
-      title: "Monthly Revenue",
+      label: "Monthly Revenue",
       value: "₹2,40,400",
       icon: <Wallet className="w-5 h-5 text-orange-500" />,
       iconBg: "bg-orange-50",
       change: "+12%",
     },
     {
-      id: "cancellation",
-      title: "Cancellation Rate",
+      label: "Cancellation Rate",
       value: "13%",
       icon: <XCircle className="w-5 h-5 text-red-500" />,
       iconBg: "bg-red-50",
       change: "-3%",
     },
     {
-      id: "followups",
-      title: "Follow-up Rate",
+      label: "Follow-up Rate",
       value: "13%",
       icon: <RefreshCcw className="w-5 h-5 text-yellow-500" />,
       iconBg: "bg-yellow-50",
@@ -61,37 +55,18 @@ export default function DashboardCards() {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {cards.map((item) => {
-        const isPositive = item.change.startsWith("+");
-
-        return (
-          <PortalCard
-            key={item.id}
-            href={`/dashboard/${item.id}`}
-            badgeText={item.title}
-            badgeColor="bg-slate-100 text-slate-700"
-            title={item.value}
-            description={
-              <div className="mt-1">
-                <span
-                  className={`text-sm font-semibold ${
-                    isPositive ? "text-green-600" : "text-red-500"
-                  }`}
-                >
-                  {item.change}
-                </span>
-
-                <span className="text-xs text-gray-400 ml-1">
-                  vs last period
-                </span>
-              </div>
-            }
-            icon={item.icon}
-            iconBg={item.iconBg}
-          />
-        );
-      })}
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {stats.map((item) => (
+        <PortalCard
+          key={item.label}
+          variant="stat"
+          label={item.label}
+          value={item.value}
+          icon={item.icon}
+          iconBg={item.iconBg}
+          change={item.change} // if your PortalCard supports it
+        />
+      ))}
     </div>
   );
 }
