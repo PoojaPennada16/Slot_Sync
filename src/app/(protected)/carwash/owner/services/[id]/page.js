@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 
-import ServiceHeader from "@/components/carwash/owner/services/details/ResuableHeader";
+import ServiceHeader from "@/components/carwash/common/ResuableHeader";
 import ServiceStats from "@/components/carwash/owner/services/details/ServiceStats";
 import ServiceCharts from "@/components/carwash/owner/services/details/ServiceCharts";
 import ServiceInfo from "@/components/carwash/owner/services/details/ServiceInfo";

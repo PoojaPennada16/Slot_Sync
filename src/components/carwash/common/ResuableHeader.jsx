@@ -7,6 +7,9 @@ export default function ServiceHeader({
   title,
   subtitle,
   price,
+  backText = "Back to Services",
+  rightContent,
+  children,
 }) {
   const router = useRouter();
 
@@ -18,7 +21,7 @@ export default function ServiceHeader({
         className="mb-6 flex items-center gap-2 text-[#667085] transition hover:text-[#3F63DD]"
       >
         <ChevronLeft size={20} />
-        <span className="text-sm font-medium">Back to Services</span>
+        <span className="text-sm font-medium">{backText}</span>
       </button>
 
       <div className="flex items-center justify-between">
@@ -32,12 +35,18 @@ export default function ServiceHeader({
           </p>
         </div>
 
-        <div className="rounded-xl bg-indigo-200 px-2 py-1 text-indigo-500 shadow-lg">
-          <h2 className="mt-1 text-xs font-bold">
-            {price}
-          </h2>
-        </div>
+        {rightContent ? (
+          rightContent
+        ) : (
+          <div className="rounded-xl bg-indigo-200 px-2 py-1 text-indigo-500 shadow-lg">
+            <h2 className="mt-1 text-xs font-bold">
+              {price}
+            </h2>
+          </div>
+        )}
       </div>
+
+      {children}
     </div>
   );
 }

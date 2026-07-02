@@ -268,9 +268,6 @@ export default function Home() {
                   description={p.description}
                   className="h-full hover:-translate-y-1"
                 >
-                  <span className="text-sm font-semibold text-slate-700 group-hover:text-slate-900">
-                    Enter →
-                  </span>
                 </PortalCard>
               ))}
             </div>
