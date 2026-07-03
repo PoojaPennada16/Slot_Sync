@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Star } from "lucide-react";
 import PortalCard from "@/components/common/card";
 import Button from "@/components/common/button";
+import InputField from "@/components/common/inputfield";
 
 const stats = [
   { label: "Total Appointments", value: "63"      },
@@ -88,38 +89,52 @@ export default function ProfilePage() {
 
             {/* Row 1 */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className={labelClass}>Name</label>
-                <input value={form.name} onChange={(e) => update("name", e.target.value)} className={inputClass} />
-              </div>
-              <div>
-                <label className={labelClass}>Specialization</label>
-                <input value={form.specialization} onChange={(e) => update("specialization", e.target.value)} className={inputClass} />
-              </div>
+              <InputField
+                label="Name"
+                name="name"
+                value={form.name}
+                onChange={(e) => update("name", e.target.value)}
+              />
+              <InputField
+                label="Specialization"
+                name="specialization"
+                value={form.specialization}
+                onChange={(e) => update("specialization", e.target.value)}
+              />
             </div>
 
             {/* Row 2 */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className={labelClass}>Qualification</label>
-                <input value={form.qualification} onChange={(e) => update("qualification", e.target.value)} className={inputClass} />
-              </div>
-              <div>
-                <label className={labelClass}>Languages (comma separated)</label>
-                <input value={form.languages} onChange={(e) => update("languages", e.target.value)} className={inputClass} />
-              </div>
+              <InputField
+                label="Qualification"
+                name="qualification"
+                value={form.qualification}
+                onChange={(e) => update("qualification", e.target.value)}
+              />
+              <InputField
+                label="Languages (comma separated)"
+                name="languages"
+                value={form.languages}
+                onChange={(e) => update("languages", e.target.value)}
+              />
             </div>
 
             {/* Row 3 */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className={labelClass}>Experience (yrs)</label>
-                <input type="number" value={form.experience} onChange={(e) => update("experience", e.target.value)} className={inputClass} />
-              </div>
-              <div>
-                <label className={labelClass}>Consultation Fee</label>
-                <input type="number" value={form.fee} onChange={(e) => update("fee", e.target.value)} className={inputClass} />
-              </div>
+              <InputField
+                label="Experience (yrs)"
+                name="experience"
+                type="number"
+                value={form.experience}
+                onChange={(e) => update("experience", e.target.value)}
+              />
+              <InputField
+                label="Consultation Fee"
+                name="fee"
+                type="number"
+                value={form.fee}
+                onChange={(e) => update("fee", e.target.value)}
+              />
             </div>
 
             {/* About */}
@@ -135,26 +150,35 @@ export default function ProfilePage() {
 
             {/* Row 4 */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className={labelClass}>Clinic / Hospital</label>
-                <input value={form.clinic} onChange={(e) => update("clinic", e.target.value)} className={inputClass} />
-              </div>
-              <div>
-                <label className={labelClass}>Address</label>
-                <input value={form.address} onChange={(e) => update("address", e.target.value)} className={inputClass} />
-              </div>
+              <InputField
+                label="Clinic / Hospital"
+                name="clinic"
+                value={form.clinic}
+                onChange={(e) => update("clinic", e.target.value)}
+              />
+              <InputField
+                label="Address"
+                name="address"
+                value={form.address}
+                onChange={(e) => update("address", e.target.value)}
+              />
             </div>
 
             {/* Row 5 */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className={labelClass}>Phone</label>
-                <input value={form.phone} onChange={(e) => update("phone", e.target.value)} className={inputClass} />
-              </div>
-              <div>
-                <label className={labelClass}>Email</label>
-                <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className={inputClass} />
-              </div>
+              <InputField
+                label="Phone"
+                name="phone"
+                value={form.phone}
+                onChange={(e) => update("phone", e.target.value)}
+              />
+              <InputField
+                label="Email"
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={(e) => update("email", e.target.value)}
+              />
             </div>
 
             {/* Save */}

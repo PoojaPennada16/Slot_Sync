@@ -4,6 +4,7 @@ import { useState } from "react";
 import PortalCard from "@/components/common/card";
 import Button from "@/components/common/button";
 import { Sparkles, Check, X } from "lucide-react";
+import InputField from "@/components/common/inputfield";
 
 const tabs = [
   { key: "today", label: "Today", count: 7 },
@@ -159,15 +160,18 @@ export default function Appointments() {
                     {/* Inline prescribe form */}
                     {isOpen && (
                       <div className="mt-4 bg-slate-50 rounded-2xl p-4 flex flex-col gap-3">
-                        <input
-                          type="text"
-                          value={form.medicine}
-                          onChange={(e) =>
-                            updateForm(appt.id, { medicine: e.target.value })
-                          }
-                          placeholder="Medicine (e.g. Paracetamol)"
-                          className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 outline-none focus:border-indigo-300"
-                        />
+                       <InputField
+  label="Medicine"
+  name={`medicine-${appt.id}`}
+  type="text"
+  value={form.medicine}
+  onChange={(e) =>
+    updateForm(appt.id, {
+      medicine: e.target.value,
+    })
+  }
+  placeholder="Medicine (e.g. Paracetamol)"
+/>
 
                         <textarea
                           value={form.notes}

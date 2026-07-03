@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import PortalCard from "@/components/common/card";
 import Button from "@/components/common/button";
+import InputField from "@/components/common/inputfield";
 import { Trash2, Printer, Send, Plus } from "lucide-react";
 
 const PATIENTS = [
@@ -125,17 +126,18 @@ export default function PrescriptionsDashboard() {
                         <div key={med.id} className="rounded-2xl border border-slate-100 bg-slate-50 p-4 space-y-2">
                           {/* Row 1: Medicine name + delete */}
                           <div className="flex items-center gap-2">
-                            <input
-                              type="text"
-                              placeholder="Medicine name"
-                              value={med.name}
-                              onChange={(e) => updateMedicine(med.id, "name", e.target.value)}
-                              className={`${inputClass} flex-1`}
-                            />
+                            <div className="flex-1">
+                              <InputField
+                                name={`med-name-${med.id}`}
+                                placeholder="Medicine name"
+                                value={med.name}
+                                onChange={(e) => updateMedicine(med.id, "name", e.target.value)}
+                              />
+                            </div>
                             <button
                               type="button"
                               onClick={() => removeMedicine(med.id)}
-                              className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-slate-400 hover:text-rose-500 transition"
+                              className="grid h-[46px] w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-slate-400 hover:text-rose-500 transition"
                             >
                               <Trash2 className="h-4 w-4" />
                             </button>
@@ -148,13 +150,13 @@ export default function PrescriptionsDashboard() {
                               { field: "duration",     placeholder: "5 days" },
                               { field: "instructions", placeholder: "After food" },
                             ].map(({ field, placeholder }) => (
-                              <input
+                              <InputField
                                 key={field}
-                                type="text"
+                                name={`med-${field}-${med.id}`}
                                 placeholder={placeholder}
                                 value={med[field]}
                                 onChange={(e) => updateMedicine(med.id, field, e.target.value)}
-                                className={`${inputClass} text-center`}
+                                className="text-center"
                               />
                             ))}
                           </div>
@@ -165,14 +167,20 @@ export default function PrescriptionsDashboard() {
 
                   {/* Tests + Follow-up */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className={labelClass}>Suggested Tests (comma separated)</label>
-                      <input type="text" placeholder="Blood Test, MRI" value={tests} onChange={(e) => setTests(e.target.value)} className={inputClass} />
-                    </div>
-                    <div>
-                      <label className={labelClass}>Follow-up Date</label>
-                      <input type="date" value={followUp} onChange={(e) => setFollowUp(e.target.value)} className={inputClass} />
-                    </div>
+                    <InputField
+                      label="Suggested Tests (comma separated)"
+                      name="tests"
+                      placeholder="Blood Test, MRI"
+                      value={tests}
+                      onChange={(e) => setTests(e.target.value)}
+                    />
+                    <InputField
+                      label="Follow-up Date"
+                      name="followUp"
+                      type="date"
+                      value={followUp}
+                      onChange={(e) => setFollowUp(e.target.value)}
+                    />
                   </div>
 
                   {/* Precautions + Referral */}

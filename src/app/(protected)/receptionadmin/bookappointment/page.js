@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search, UserPlus } from "lucide-react";
 import PortalCard from "@/components/common/card";
+import InputField from "@/components/common/inputfield";
 
 const PATIENTS = [
   { id: 1, name: "Aryan Nair",      phone: "+91 8606990531" },
@@ -77,16 +78,13 @@ export default function BookAppointmentPage() {
               </div>
 
               {/* Search */}
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <input
-                  type="text"
-                  placeholder="Search name or phone..."
-                  value={query}
-                  onChange={(e) => { setQuery(e.target.value); setSelected(null); }}
-                  className={`${inputClass} pl-11`}
-                />
-              </div>
+              <InputField
+                name="patient-search"
+                placeholder="Search name or phone..."
+                value={query}
+                onChange={(e) => { setQuery(e.target.value); setSelected(null); }}
+                icon={<Search className="h-4 w-4" />}
+              />
 
               {/* Dropdown results */}
               {filtered.length > 0 && !selected && (
@@ -164,15 +162,13 @@ export default function BookAppointmentPage() {
 
               {/* Date + Type */}
               <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-1.5">Date</label>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className={inputClass}
-                  />
-                </div>
+                <InputField
+                  label="Date"
+                  name="appointment-date"
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-1.5">Type</label>
                   <select

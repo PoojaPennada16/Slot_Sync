@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { X, ChevronDown } from "lucide-react";
 import Button from "@/components/common/button";
+import InputField from "@/components/common/inputfield";
 
 export default function AddDoctorModal({
   isOpen,
@@ -10,9 +11,34 @@ export default function AddDoctorModal({
   onSubmit,
   doctor,
 }) {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    department: "Cardiology",
+    specialization: "",
+    qualification: "MBBS, MD",
+    experience: "",
+    fee: 600,
+    hospital: "Main Campus",
+    about: "",
+  });
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      setForm({
+        name: doctor?.name || "",
+        email: doctor?.email || "",
+        phone: doctor?.phone || "",
+        department: doctor?.dept || "Cardiology",
+        specialization: doctor?.role || "",
+        qualification: doctor?.qualification || "MBBS, MD",
+        experience: doctor?.experience ? doctor.experience.replace("y exp", "") : "",
+        fee: doctor?.fee || 600,
+        hospital: doctor?.hospital || "Main Campus",
+        about: doctor?.about || "",
+      });
     } else {
       document.body.style.overflow = "unset";
     }
@@ -20,9 +46,13 @@ export default function AddDoctorModal({
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isOpen]);
+  }, [isOpen, doctor]);
 
   if (!isOpen) return null;
+
+  function update(field, val) {
+    setForm((prev) => ({ ...prev, [field]: val }));
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,46 +95,32 @@ export default function AddDoctorModal({
         >
           {/* Name & Email */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-slate-800 mb-1">
-                Name
-              </label>
-              <input
-                required
-                type="text"
-                name="name"
-                defaultValue={doctor?.name || ""}
-                className="w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-slate-800 mb-1">
-                Email
-              </label>
-              <input
-                required
-                type="email"
-                name="email"
-                defaultValue={doctor?.email || ""}
-                className="w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-              />
-            </div>
+            <InputField
+              label="Name"
+              name="name"
+              required
+              value={form.name}
+              onChange={(e) => update("name", e.target.value)}
+            />
+            <InputField
+              label="Email"
+              name="email"
+              type="email"
+              required
+              value={form.email}
+              onChange={(e) => update("email", e.target.value)}
+            />
           </div>
 
           {/* Phone & Department */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-slate-800 mb-1">
-                Phone
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                defaultValue={doctor?.phone || ""}
-                className="w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-              />
-            </div>
+            <InputField
+              label="Phone"
+              name="phone"
+              type="tel"
+              value={form.phone}
+              onChange={(e) => update("phone", e.target.value)}
+            />
 
             <div>
               <label className="block text-sm font-semibold text-slate-800 mb-1">
@@ -114,7 +130,8 @@ export default function AddDoctorModal({
               <div className="relative">
                 <select
                   name="department"
-                  defaultValue={doctor?.dept || "Cardiology"}
+                  value={form.department}
+                  onChange={(e) => update("department", e.target.value)}
                   className="w-full appearance-none px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                 >
                   <option value="Cardiology">Cardiology</option>
@@ -130,77 +147,45 @@ export default function AddDoctorModal({
 
           {/* Specialization & Qualification */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-slate-800 mb-1">
-                Specialization
-              </label>
-
-              <input
-                type="text"
-                name="specialization"
-                defaultValue={doctor?.role || ""}
-                className="w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-slate-800 mb-1">
-                Qualification
-              </label>
-
-              <input
-                type="text"
-                name="qualification"
-                defaultValue={doctor?.qualification || "MBBS, MD"}
-                className="w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-              />
-            </div>
+            <InputField
+              label="Specialization"
+              name="specialization"
+              value={form.specialization}
+              onChange={(e) => update("specialization", e.target.value)}
+            />
+            <InputField
+              label="Qualification"
+              name="qualification"
+              value={form.qualification}
+              onChange={(e) => update("qualification", e.target.value)}
+            />
           </div>
 
           {/* Experience & Fee */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-slate-800 mb-1">
-                Experience (yrs)
-              </label>
-
-              <input
-                type="number"
-                name="experience"
-                defaultValue={
-                  doctor?.experience
-                    ? doctor.experience.replace("y exp", "")
-                    : ""
-                }
-                className="w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-slate-800 mb-1">
-                Consultation Fee
-              </label>
-
-              <input
-                type="number"
-                name="fee"
-                defaultValue={doctor?.fee || 600}
-                className="w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-              />
-            </div>
+            <InputField
+              label="Experience (yrs)"
+              name="experience"
+              type="number"
+              value={form.experience}
+              onChange={(e) => update("experience", e.target.value)}
+            />
+            <InputField
+              label="Consultation Fee"
+              name="fee"
+              type="number"
+              value={form.fee}
+              onChange={(e) => update("fee", e.target.value)}
+            />
           </div>
 
           {/* Hospital */}
-          <div>
-            <label className="block text-sm font-semibold text-slate-800 mb-1">
-              Hospital
-            </label>
-
-            <input
-              type="text"
+          <div className="sm:w-1/2">
+            <InputField
+              label="Hospital"
               name="hospital"
-              defaultValue={doctor?.hospital || "Main Campus"}
-              className="w-full sm:w-1/2 px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+              value={form.hospital}
+              onChange={(e) => update("hospital", e.target.value)}
             />
           </div>
 
@@ -213,7 +198,8 @@ export default function AddDoctorModal({
             <textarea
               name="about"
               rows={3}
-              defaultValue={doctor?.about || ""}
+              value={form.about}
+              onChange={(e) => update("about", e.target.value)}
               className="w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
             />
           </div>

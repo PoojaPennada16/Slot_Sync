@@ -4,6 +4,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import PortalCard from "@/components/common/card";
 import Button from "@/components/common/button";
+import InputField from "@/components/common/inputfield";
 
 const STATUS_OPTIONS = ["Available", "Limited", "Blocked", "Holiday", "Emergency"];
 
@@ -18,6 +19,15 @@ const statusStyles = {
 const SCOPE_OPTIONS   = ["Single Slot", "Half Day", "Full Day", "Date Range"];
 const REASON_OPTIONS  = ["Personal Leave", "Medical Leave", "Conference", "Holiday", "Emergency", "Other"];
 
+const selectClass =
+  "w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition appearance-none";
+
+const chevronStyle = {
+  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "right 1rem center",
+};
+
 function BlockSlotsModal({ onClose, onConfirm }) {
   const today = new Date().toISOString().split("T")[0];
   const [scope,  setScope]  = useState("Single Slot");
@@ -29,9 +39,6 @@ function BlockSlotsModal({ onClose, onConfirm }) {
     onConfirm({ scope, date, reason, notes });
     onClose();
   }
-
-  const fieldClass =
-    "w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition";
 
   return (
     <div
@@ -61,23 +68,22 @@ function BlockSlotsModal({ onClose, onConfirm }) {
           <select
             value={scope}
             onChange={(e) => setScope(e.target.value)}
-            className={`${fieldClass} appearance-none`}
-            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 1rem center" }}
+            className={selectClass}
+            style={chevronStyle}
           >
             {SCOPE_OPTIONS.map((o) => <option key={o}>{o}</option>)}
           </select>
         </div>
 
         {/* Date */}
-        <div className="space-y-1.5">
-          <label className="text-sm font-semibold text-slate-700">Date</label>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className={fieldClass}
-          />
-        </div>
+        <InputField
+          label="Date"
+          name="block-date"
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          required
+        />
 
         {/* Block Reason */}
         <div className="space-y-1.5">
@@ -87,24 +93,22 @@ function BlockSlotsModal({ onClose, onConfirm }) {
           <select
             value={reason}
             onChange={(e) => setReason(e.target.value)}
-            className={`${fieldClass} appearance-none`}
-            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 1rem center" }}
+            className={selectClass}
+            style={chevronStyle}
           >
             {REASON_OPTIONS.map((o) => <option key={o}>{o}</option>)}
           </select>
         </div>
 
         {/* Notes */}
-        <div className="space-y-1.5">
-          <label className="text-sm font-semibold text-slate-700">Notes</label>
-          <input
-            type="text"
-            placeholder="Optional notes"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            className={fieldClass}
-          />
-        </div>
+        <InputField
+          label="Notes"
+          name="block-notes"
+          type="text"
+          placeholder="Optional notes"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+        />
 
         {/* Footer */}
         <div className="flex justify-end pt-1">
@@ -148,9 +152,6 @@ export default function AvailabilityPage() {
   }
 
   const historyBadge = { block: "bg-slate-100 text-slate-500", break: "bg-amber-100 text-amber-600", emergency: "bg-rose-100 text-rose-600" };
-
-  const fieldClass =
-    "w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-200 transition";
 
   return (
     <>
@@ -207,14 +208,20 @@ export default function AvailabilityPage() {
             title="Consultation Settings"
             description={
               <div className="space-y-4 mt-1">
-                <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-slate-700">Consultation Duration (min)</label>
-                  <input type="number" value={duration} onChange={(e) => setDuration(Number(e.target.value))} className={fieldClass} />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-slate-700">Slot Capacity</label>
-                  <input type="number" value={capacity} onChange={(e) => setCapacity(Number(e.target.value))} className={fieldClass} />
-                </div>
+                <InputField
+                  label="Consultation Duration (min)"
+                  name="duration"
+                  type="number"
+                  value={duration}
+                  onChange={(e) => setDuration(Number(e.target.value))}
+                />
+                <InputField
+                  label="Slot Capacity"
+                  name="capacity"
+                  type="number"
+                  value={capacity}
+                  onChange={(e) => setCapacity(Number(e.target.value))}
+                />
                 <Button variant="ghost" size="lg" className="w-full rounded-2xl border border-slate-200 text-slate-700 hover:bg-slate-50" onClick={handleLunchBreak}>
                   Set Lunch Break
                 </Button>

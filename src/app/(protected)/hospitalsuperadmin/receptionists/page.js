@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Headphones, Ban, ArrowLeftRight, X } from "lucide-react";
+import { Plus, Headphones, Ban, ArrowLeftRight } from "lucide-react";
 import Button from "@/components/common/button";
 import PortalCard from "@/components/common/card";
+import AddReceptionistModal from "@/hospitalmodels/addreceptionist";
 
 export default function ReceptionistsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,6 +38,11 @@ export default function ReceptionistsPage() {
       stats: { booked: 465, walkIns: 180, checkIns: 449, avgWait: "23m" },
     },
   ];
+
+  function handleAddReceptionist(data) {
+    console.log("New receptionist:", data);
+    // TODO: wire up to your create-receptionist API / state
+  }
 
   return (
     <div className="p-8 bg-slate-50 min-h-screen font-sans relative">
@@ -149,110 +155,11 @@ export default function ReceptionistsPage() {
       </div>
 
       {/* --- Add Receptionist Modal --- */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity">
-          <div className="bg-white rounded-3xl w-full max-w-2xl p-8 shadow-2xl relative mx-4 border border-slate-100">
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-50 transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <h2 className="text-2xl font-bold text-slate-900 mb-6">
-              Add Receptionist
-            </h2>
-
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setIsModalOpen(false);
-              }}
-              className="space-y-5"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-slate-800">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 rounded-2xl bg-slate-50 border-2 border-indigo-500 focus:outline-none text-slate-800 font-medium text-[15px]"
-                    placeholder="Enter name"
-                    autoFocus
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-slate-800">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200/80 focus:outline-none text-slate-800 font-medium text-[15px]"
-                    placeholder="Enter email"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-slate-800">
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200/80 focus:outline-none text-slate-800 font-medium text-[15px]"
-                    placeholder="Enter phone number"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-slate-800">
-                    Branch
-                  </label>
-                  <select className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200/80 focus:outline-none text-slate-800 font-medium text-[15px] appearance-none cursor-pointer">
-                    <option>Main Campus</option>
-                    <option>West Campus</option>
-                  </select>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-slate-800">
-                    Floor
-                  </label>
-                  <select className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200/80 focus:outline-none text-slate-800 font-medium text-[15px] appearance-none cursor-pointer">
-                    <option>Floor 1</option>
-                    <option>Floor 2</option>
-                    <option>Floor 3</option>
-                    <option>Floor 4</option>
-                    <option>Floor 5</option>
-                  </select>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-slate-800">
-                    Shift
-                  </label>
-                  <select className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200/80 focus:outline-none text-slate-800 font-medium text-[15px] appearance-none cursor-pointer">
-                    <option>08:00 - 16:00</option>
-                    <option>16:00 - 00:00</option>
-                    <option>22:00 - 06:00</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="flex justify-end pt-4">
-                <Button
-                  type="submit"
-                  variant="primary"
-                  className="px-6 py-2.5 font-bold rounded-xl text-sm"
-                >
-                  Add
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      <AddReceptionistModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleAddReceptionist}
+      />
     </div>
   );
 }
