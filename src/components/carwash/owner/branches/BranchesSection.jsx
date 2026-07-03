@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Building2, EllipsisVertical, Plus, Star } from "lucide-react";
+import { Building2, EllipsisVertical, Plus, Star, Pencil, PauseCircle, Trash2, CheckCircle2, XCircle } from "lucide-react";
 import AddBranch from "./AddBranch";
+import CardMenu from "@/components/carwash/common/CardMenu";
 
 const branches = [
   {
@@ -57,6 +58,7 @@ const branches = [
 
 export default function BranchesSection() {
   const [openAddBranch, setOpenAddBranch] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
 
   return (
     <div className="w-full">
@@ -85,7 +87,7 @@ export default function BranchesSection() {
           return (
             <div
               key={branch.id}
-              className="flex min-h-full flex-col rounded-[30px] border border-white/70 bg-[linear-gradient(135deg,#ffffff_0%,#f8f9ff_58%,#eef2ff_100%)] px-8 py-7 shadow-[0_12px_40px_rgba(31,41,55,0.08)]"
+              className="relative flex min-h-full flex-col rounded-[30px] border border-white/70 bg-[linear-gradient(135deg,#ffffff_0%,#f8f9ff_58%,#eef2ff_100%)] px-8 py-7 shadow-[0_12px_40px_rgba(31,41,55,0.08)]"
             >
               {/* Top section */}
               <div className="mb-4 flex items-start justify-between">
@@ -97,7 +99,7 @@ export default function BranchesSection() {
                   />
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="relative flex items-center gap-3">
                   <span
                     className={`inline-flex h-[25px] items-center rounded-full px-6 text-[10px] font-semibold shadow-[0_4px_12px_rgba(0,0,0,0.08)]
                       ${
@@ -109,9 +111,32 @@ export default function BranchesSection() {
                     {branch.status}
                   </span>
 
-                  <button className="flex h-4 w-4 items-center justify-center text-gray-800">
+                  <button
+                    onClick={() => setOpenMenu(openMenu === branch.id ? null : branch.id)}
+                    className="flex h-4 w-4 items-center justify-center text-gray-800"
+                  >
                     <EllipsisVertical size={18} />
                   </button>
+
+                  {openMenu === branch.id && (
+                    <CardMenu
+                      className="absolute right-0 top-7 z-50"
+                      items={
+                        isApproved
+                          ? [
+                              { label: "Edit", icon: <Pencil size={18} />, onClick: () => setOpenMenu(null) },
+                              { label: "Suspend", icon: <PauseCircle size={18} />, divider: true, onClick: () => setOpenMenu(null) },
+                              { label: "Delete", icon: <Trash2 size={18} />, variant: "delete", onClick: () => setOpenMenu(null) },
+                            ]
+                          : [
+                              { label: "Edit", icon: <Pencil size={18} />, onClick: () => setOpenMenu(null) },
+                              { label: "Approve", icon: <CheckCircle2 size={18} className="text-[#22C55E]" />, onClick: () => setOpenMenu(null) },
+                              { label: "Reject", icon: <XCircle size={18} className="text-[#EF4444]" />, divider: true, onClick: () => setOpenMenu(null) },
+                              { label: "Delete", icon: <Trash2 size={18} />, variant: "delete", onClick: () => setOpenMenu(null) },
+                            ]
+                      }
+                    />
+                  )}
                 </div>
               </div>
 

@@ -1,9 +1,21 @@
 "use client";
 
-import { MoreVertical, Star } from "lucide-react";
-import { useMemo, useState } from "react";
+import {
+  MoreVertical,
+  Star,
+  Trash2,
+  Pencil,
+  Ban,
+} from "lucide-react";
+import {
+  useMemo,
+  useState,
+  useRef,
+  useEffect,
+} from "react";
 import { useRouter } from "next/navigation";
 import SearchService from "./SearchService";
+import CardMenu from "@/components/carwash/common/CardMenu";
 
 const servicesData = [
   {
@@ -143,9 +155,59 @@ const servicesData = [
 function ServiceCard({ item }) {
   const router = useRouter();
 
+  const [openMenu, setOpenMenu] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpenMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () =>
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+  }, []);
+
+  const menuItems = [
+    {
+      label: "Edit",
+      icon: <Pencil size={15} />,
+      onClick: () => {
+        console.log("Edit");
+        setOpenMenu(false);
+      },
+    },
+    {
+      label: "Deactivate",
+      icon: <Ban size={15} />,
+      divider: true,
+      onClick: () => {
+        console.log("Deactivate");
+        setOpenMenu(false);
+      },
+    },
+    {
+      label: "Delete",
+      icon: <Trash2 size={15} />,
+      variant: "delete",
+      onClick: () => {
+        console.log("Delete");
+        setOpenMenu(false);
+      },
+    },
+  ];
+
   return (
     <div
-      onClick={() => router.push(`/carwash/owner/services/${item.id}`)}
+      onClick={() =>
+        router.push(`/carwash/owner/services/${item.id}`)
+      }
       className="cursor-pointer rounded-2xl border border-white/60 bg-white/70 p-4 shadow-[0_8px_30px_rgba(31,41,55,0.06)] backdrop-blur-sm transition hover:-translate-y-1"
     >
       <div className="mb-5 flex items-start justify-between gap-3">
@@ -154,16 +216,27 @@ function ServiceCard({ item }) {
         </div>
 
         <div
-          className="flex items-center gap-4"
+          className="relative flex items-center gap-4"
           onClick={(e) => e.stopPropagation()}
+          ref={menuRef}
         >
           <span className="rounded-full bg-[#DDF5E8] px-2 py-1 text-xs font-semibold text-[#1DBF73] shadow-sm">
             {item.status}
           </span>
 
-          <button className="text-[#111827]">
+          <button
+            onClick={() => setOpenMenu(!openMenu)}
+            className="text-[#111827]"
+          >
             <MoreVertical size={14} strokeWidth={2.5} />
           </button>
+
+          {openMenu && (
+            <CardMenu
+              items={menuItems}
+              className="absolute right-0 top-8 z-50 w-[190px]"
+            />
+          )}
         </div>
       </div>
 

@@ -53,7 +53,7 @@ export default function SidebarProfileCard({ role, profileRole }) {
 
         <button
           onClick={handleLogout}
-          className="w-8 h-8 rounded-xl flex items-center justify-center hover:bg-red-400 transition"
+          className="w-8 h-8 rounded-xl flex items-center justify-center hover:bg-red-200 transition"
         >
           <LogOut className="w-4 h-4 text-red-600 hover:text-red-700" />
         </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import ReusableDropdown from "./ReusableDropdown";
+import ReusableDropdown from "../../common/ReusableDropdown";
 
 export default function Step5({
   technician,
