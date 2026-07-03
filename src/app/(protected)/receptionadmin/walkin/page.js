@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { UserPlus, AlertTriangle } from "lucide-react";
 import PortalCard from "@/components/common/card";
+import InputField from "@/components/common/inputfield";
 
 const DEPARTMENTS = ["ENT", "Cardiology", "Orthopedics", "Neurology", "Dermatology", "Pediatrics"];
 const DOCTORS = {
@@ -65,38 +66,30 @@ export default function WalkInRegistrationPage() {
 
             {/* Row 1: Name + Mobile */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className={lbl}>Name</label>
-                <input
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => update("name", e.target.value)}
-                  className={input}
-                />
-              </div>
-              <div>
-                <label className={lbl}>Mobile</label>
-                <input
-                  type="tel"
-                  value={form.mobile}
-                  onChange={(e) => update("mobile", e.target.value)}
-                  className={input}
-                />
-              </div>
+              <InputField
+                label="Name"
+                name="name"
+                value={form.name}
+                onChange={(e) => update("name", e.target.value)}
+              />
+              <InputField
+                label="Mobile"
+                name="mobile"
+                type="tel"
+                value={form.mobile}
+                onChange={(e) => update("mobile", e.target.value)}
+              />
             </div>
 
             {/* Row 2: Age + Gender */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className={lbl}>Age</label>
-                <input
-                  type="number"
-                  min={0}
-                  value={form.age}
-                  onChange={(e) => update("age", Number(e.target.value))}
-                  className={input}
-                />
-              </div>
+              <InputField
+                label="Age"
+                name="age"
+                type="number"
+                value={form.age}
+                onChange={(e) => update("age", Number(e.target.value))}
+              />
               <div>
                 <label className={lbl}>Gender</label>
                 <select

@@ -114,7 +114,7 @@ export default function DoctorSidebar() {
       </nav>
 
       {/* Footer / profile */}
-      <Link href="/DoctorAdmin/profile">
+      <Link href="/hospitalAdmin/profile">
         <div className="flex items-center gap-3 px-5 py-4 border-t border-slate-100 hover:bg-slate-50 transition-colors">
           <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0">
             <UserCog size={16} className="text-slate-500" />
