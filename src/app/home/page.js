@@ -113,7 +113,7 @@ const portalsByBusiness = {
   ],
   salon: [
     {
-      href: "/SalonAdmin/dashboard",
+      href: "/salon/salonowner/dashboard",
       icon: Building2,
       iconBg: "bg-pink-100",
       iconColor: "text-pink-600",
