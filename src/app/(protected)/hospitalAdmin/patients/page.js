@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search, Star, Clock } from "lucide-react";
 import PortalCard from "@/components/common/card";
+import PatientDetailPopup from "@/hospitalmodels/docpatientdetailmodel";
 
 const patients = [
   {
@@ -112,6 +113,7 @@ export { patients };
 
 export default function PatientRecordsPage() {
   const [query, setQuery] = useState("");
+  const [selectedPatient, setSelectedPatient] = useState(null); // NEW
 
   const filtered = patients.filter((p) =>
     p.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -142,7 +144,7 @@ export default function PatientRecordsPage() {
           return (
             <PortalCard
               key={patient.id}
-             
+              onClick={() => setSelectedPatient(patient)} // NEW — opens popup
               title={patient.name}
               badgeText={
                 isNew ? (
@@ -170,6 +172,14 @@ export default function PatientRecordsPage() {
         <p className="text-center text-sm text-slate-400 py-12">
           No patients found for &quot;{query}&quot;
         </p>
+      )}
+
+      {/* NEW — popup opens whenever a patient is selected */}
+      {selectedPatient && (
+        <PatientDetailPopup
+          patient={selectedPatient}
+          onClose={() => setSelectedPatient(null)}
+        />
       )}
     </div>
   );

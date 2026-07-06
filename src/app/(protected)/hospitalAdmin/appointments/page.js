@@ -92,11 +92,10 @@ export default function Appointments() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-                activeTab === tab.key
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${activeTab === tab.key
                   ? "bg-white text-slate-900 shadow-[0_2px_6px_rgba(15,23,42,0.08)]"
                   : "text-slate-500 hover:text-slate-700"
-              }`}
+                }`}
             >
               {tab.label} ({tab.count})
             </button>
@@ -160,18 +159,18 @@ export default function Appointments() {
                     {/* Inline prescribe form */}
                     {isOpen && (
                       <div className="mt-4 bg-slate-50 rounded-2xl p-4 flex flex-col gap-3">
-                       <InputField
-  label="Medicine"
-  name={`medicine-${appt.id}`}
-  type="text"
-  value={form.medicine}
-  onChange={(e) =>
-    updateForm(appt.id, {
-      medicine: e.target.value,
-    })
-  }
-  placeholder="Medicine (e.g. Paracetamol)"
-/>
+                        <InputField
+                          label="Medicine"
+                          name={`medicine-${appt.id}`}
+                          type="text"
+                          value={form.medicine}
+                          onChange={(e) =>
+                            updateForm(appt.id, {
+                              medicine: e.target.value,
+                            })
+                          }
+                          placeholder="Medicine (e.g. Paracetamol)"
+                        />
 
                         <textarea
                           value={form.notes}

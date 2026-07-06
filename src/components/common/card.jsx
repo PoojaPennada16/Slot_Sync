@@ -2,6 +2,7 @@ import Link from "next/link";
 
 export default function PortalCard({
   href,
+  onClick, // NEW: makes the card clickable (e.g. to open a popup)
   className = "",
   variant = "default",
 
@@ -85,8 +86,19 @@ export default function PortalCard({
     shadow-[0_8px_30px_rgb(0,0,0,0.04)]
     hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]
     transition-all duration-300
+    ${onClick ? "cursor-pointer text-left w-full" : ""}
     ${className}
   `;
+
+  // onClick takes priority over href — used for opening popups instead of navigating
+  if (onClick) {
+    return (
+      <button type="button" onClick={onClick} className={wrapperClass}>
+        {Content}
+        {children}
+      </button>
+    );
+  }
 
   return href ? (
     <Link href={href} className={wrapperClass}>
