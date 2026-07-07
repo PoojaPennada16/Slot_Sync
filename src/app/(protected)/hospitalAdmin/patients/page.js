@@ -144,7 +144,7 @@ export default function PatientRecordsPage() {
           return (
             <PortalCard
               key={patient.id}
-              onClick={() => setSelectedPatient(patient)} // NEW — opens popup
+              onClick={() => setSelectedPatient(patient)} 
               title={patient.name}
               badgeText={
                 isNew ? (
