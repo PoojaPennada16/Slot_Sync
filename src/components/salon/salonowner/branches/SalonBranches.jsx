@@ -95,7 +95,7 @@ const SalonBranches = () => {
                 </div>
 
                 <div className="grid grid-cols-3 gap-3 mt-5">
-                  <div className="bg-slate-50 rounded-2xl p-3 text-center">
+                  <div className="bg-slate-0 rounded-2xl p-3 text-center">
                     <p className="text-[10px] text-slate-500 uppercase">
                       Today
                     </p>
@@ -105,7 +105,7 @@ const SalonBranches = () => {
                     </h3>
                   </div>
 
-                  <div className="bg-slate-50 rounded-2xl p-3 text-center">
+                  <div className="bg-slate-0 rounded-2xl p-3 text-center">
                     <p className="text-[10px] text-slate-500 uppercase">
                       Revenue
                     </p>
@@ -115,7 +115,7 @@ const SalonBranches = () => {
                     </h3>
                   </div>
 
-                  <div className="bg-slate-50 rounded-2xl p-3 text-center">
+                  <div className="bg-slate-0 rounded-2xl p-3 text-center">
                     <p className="text-[10px] text-slate-500 uppercase">
                       Staff
                     </p>

@@ -31,7 +31,7 @@ const AddBranchDetails = () => {
 
             <div className="bg-white rounded-[20px] p-5 shadow-sm">
                 <h2 className="text-[14px] font-semibold text-[#111827] mb-5">
-                    Operations
+                    Operation
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
